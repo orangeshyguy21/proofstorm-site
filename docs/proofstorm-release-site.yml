@@ -1,0 +1,123 @@
+# Copy this file into the PROOFSTORM APPLICATION repository as
+# .github/workflows/update-site.yml after configuring the Pages hook.
+name: Update Proofstorm website
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published release tag to verify on the website
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: proofstorm-site-deployment
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.repository == 'orangeshyguy21/proofstorm'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      RELEASE_CHANNEL: alpha
+      EXPECTED_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+      SITE_URL: ${{ vars.PROOFSTORM_SITE_URL }}
+      DEPLOY_HOOK: ${{ secrets.PROOFSTORM_SITE_DEPLOY_HOOK }}
+    steps:
+      - name: Request a build and verify its public installer
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          import re
+          import time
+          import urllib.request
+          from urllib.parse import urlparse
+
+          repository = 'orangeshyguy21/proofstorm'
+          channel = os.environ['RELEASE_CHANNEL']
+          expected_tag = os.environ['EXPECTED_TAG']
+          origin = os.environ['SITE_URL'].rstrip('/')
+          hook = os.environ['DEPLOY_HOOK']
+
+          def version(tag):
+              match = re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:-alpha\.(0|[1-9][0-9]*))?', tag)
+              if not match:
+                  return None
+              actual_channel = 'alpha' if match[4] is not None else 'stable'
+              if actual_channel != channel:
+                  return None
+              return tuple(int(value or 0) for value in match.groups())
+
+          expected = version(expected_tag)
+          if expected is None:
+              raise SystemExit('Requested release does not belong to the configured channel.')
+          parsed_origin = urlparse(origin)
+          if parsed_origin.scheme != 'https' or not parsed_origin.netloc or parsed_origin.path or parsed_origin.query or parsed_origin.fragment:
+              raise SystemExit('Configure PROOFSTORM_SITE_URL as the public HTTPS origin.')
+          if not hook.startswith('https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/'):
+              raise SystemExit('Configure the PROOFSTORM_SITE_DEPLOY_HOOK secret with a Cloudflare Pages hook URL.')
+
+          candidates = []
+          for page in range(1, 101):
+              request = urllib.request.Request(
+                  f'https://api.github.com/repos/{repository}/releases?per_page=100&page={page}',
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'},
+              )
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  releases = json.load(response)
+              for release in releases:
+                  parsed = version(release['tag_name'])
+                  if parsed is not None and not release['draft'] and release['published_at'] and release['prerelease'] == (channel == 'alpha'):
+                      candidates.append((parsed, release['tag_name']))
+              if len(releases) < 100:
+                  break
+          else:
+              raise SystemExit('Release pagination limit exceeded.')
+
+          if not any(tag == expected_tag for _, tag in candidates):
+              raise SystemExit('The requested release is not published in this channel.')
+          if max(candidates)[1] != expected_tag:
+              print('A newer release exists; this older event will not request a deployment.')
+              raise SystemExit(0)
+
+          try:
+              request = urllib.request.Request(hook, data=b'', method='POST')
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  if response.status not in (200, 201, 202):
+                      raise RuntimeError('Hook request was not accepted')
+          except Exception:
+              # Do not expose the secret hook URL in an HTTP exception.
+              raise SystemExit('Cloudflare did not accept the deploy hook. Check the saved secret and Pages project.')
+
+          print('Build requested. Waiting for the expected release or a newer release in the same channel.')
+          deadline = time.monotonic() + 600
+          while time.monotonic() < deadline:
+              try:
+                  request = urllib.request.Request(origin + '/release.json?verify=' + str(time.time_ns()), headers={'Cache-Control': 'no-cache'})
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      metadata = json.load(response)
+                  observed = version(metadata.get('tag', ''))
+                  if metadata.get('repository') == repository and metadata.get('channel') == channel and observed is not None and observed >= expected:
+                      request = urllib.request.Request(origin + '/install?verify=' + str(time.time_ns()), headers={'Cache-Control': 'no-cache'})
+                      with urllib.request.urlopen(request, timeout=20) as response:
+                          if response.headers.get_content_type() != 'text/plain':
+                              raise ValueError('Installer response is not plain text')
+                          installer = response.read(1024 * 1024 + 1)
+                      if len(installer) == metadata['installer']['bytes'] and hashlib.sha256(installer).hexdigest() == metadata['installer']['sha256']:
+                          print('Website and installer verified at ' + metadata['tag'])
+                          raise SystemExit(0)
+              except Exception:
+                  pass
+              time.sleep(5)
+          raise SystemExit('Website did not reach the expected verified release within 10 minutes. Check Pages deployment logs.')
+          PY

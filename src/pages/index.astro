@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Atmosphere from '../components/Atmosphere.astro';
+import Brand from '../components/Brand.astro';
+import CopyCommand from '../components/CopyCommand.astro';
+import githubMark from '../assets/brand/github-mark.svg?raw';
+import snapshot from '../data/release-snapshot.json';
+
+const installCommand = `curl -fsSL ${new URL('/install', Astro.site).href} | sh`;
+const startCommand = 'export PATH="$HOME/.local/bin:$PATH"\nproofstorm setup\nproofstorm doctor\nproofstorm gui';
+const platforms = snapshot.release.platforms.map((platform) => platform.id === 'macos-arm64' ? 'macOS Apple Silicon' : 'Linux x86-64');
+---
+<Layout>
+  <div class="launch-page">
+    <Atmosphere />
+    <a class="source-link" href="https://github.com/orangeshyguy21/proofstorm" aria-label="View Proofstorm source on GitHub" title="View source on GitHub">
+      <span aria-hidden="true" set:html={githubMark} />
+    </a>
+    <main id="main" class="install-shell">
+      <section class="install-panel" aria-labelledby="intro-title">
+        <div class="panel-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <header class="panel-intro">
+          <Brand />
+          <h1 id="intro-title">Local test cells for Bitcoin,<br class="desktop-break" /> Lightning &amp; Cashu.</h1>
+        </header>
+        <div id="install" class="install-steps">
+          <CopyCommand command={installCommand} number="01" label="Install" primary />
+          <CopyCommand command={startCommand} number="02" label="Start" />
+        </div>
+        <footer class="panel-notes">
+          <p>Docker with Buildx must be running.</p>
+          <p class="platforms">{platforms.map((platform, index) => <><span>{platform}</span>{index < platforms.length - 1 && <span class="platform-separator" aria-hidden="true">/</span>}</>)}</p>
+        </footer>
+      </section>
+    </main>
+  </div>
+</Layout>

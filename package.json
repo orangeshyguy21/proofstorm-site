@@ -1,0 +1,30 @@
+{
+  "name": "proofstorm-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "check": "astro check",
+    "build": "npm run verify:release && astro build && node scripts/verify-build.mjs",
+    "build:pages": "npm run sync:release && npm run build",
+    "preview": "astro preview --host 127.0.0.1",
+    "sync:release": "node scripts/sync-release.mjs",
+    "verify:release": "node scripts/verify-release.mjs",
+    "test": "node --test scripts/*.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.2",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.3"
+  }
+}

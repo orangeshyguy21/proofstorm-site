@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+interface Props { command: string; label: string; number: string; primary?: boolean; }
+const { command, label, number, primary = false } = Astro.props;
+const lines = command.split('\n');
+---
+<section data-command-block class:list={['command-section', { 'command-section-primary': primary }]} aria-label={label}>
+  <div class="command-heading"><span class="command-number">{number}</span><h2>{label}</h2><span class="command-rule" aria-hidden="true"></span></div>
+  <div class="command-surface">
+    <pre class="command-code"><code>{lines.map((line) => <span class="command-row"><span class="command-prompt" aria-hidden="true">$</span><span>{line}</span></span>)}</code></pre>
+    <button type="button" data-copy-command={command} data-copy-label={`Copy ${label.toLowerCase()} command`} aria-label={`Copy ${label.toLowerCase()} command`} title="Copy command" class="copy-button">
+      <span class="copy-idle" aria-hidden="true"><Icon name="copy" class="size-[1.125rem]" /></span>
+      <svg class="copy-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+    </button>
+    <p data-copy-status role="status" class="sr-only"></p>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-command]').forEach((button) => {
+    let timer: ReturnType<typeof setTimeout>;
+    button.addEventListener('click', async () => {
+      const status = button.closest('[data-command-block]')?.querySelector<HTMLElement>('[data-copy-status]');
+      try {
+        await navigator.clipboard.writeText(button.dataset.copyCommand ?? '');
+        button.dataset.copied = 'true';
+        button.setAttribute('aria-label', 'Command copied');
+        button.title = 'Copied';
+        if (status) { status.className = 'sr-only'; status.textContent = 'Command copied.'; }
+      } catch {
+        if (status) { status.className = 'copy-error'; status.textContent = 'Select the command and copy it manually.'; }
+      }
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        delete button.dataset.copied;
+        button.setAttribute('aria-label', button.dataset.copyLabel ?? 'Copy command');
+        button.title = 'Copy command';
+        if (status) { status.className = 'sr-only'; status.textContent = ''; }
+      }, 2500);
+    });
+  });
+</script>

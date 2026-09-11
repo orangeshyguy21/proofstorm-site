@@ -1,0 +1,34 @@
+---
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '../styles/global.css';
+interface Props { title?: string; description?: string; }
+const {
+  title = 'Proofstorm — Local test cells for Bitcoin, Lightning & Cashu',
+  description = 'Bring up local test cells with real Bitcoin, Lightning, and Cashu services. Build and test through a CLI, a browser, or your coding agent.',
+} = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0e13" />
+    <link rel="icon" type="image/svg+xml" href="/proofstorm-logo.svg" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Proofstorm" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="font-sans antialiased">
+    <a href="#main" class="sr-only fixed top-4 left-4 z-50 rounded-sm bg-storm px-5 py-3 text-ink focus:not-sr-only">Skip to content</a>
+    <slot />
+  </body>
+</html>

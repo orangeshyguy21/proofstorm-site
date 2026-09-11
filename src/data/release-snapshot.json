@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "release": {
+    "schema_version": 1,
+    "repository": "orangeshyguy21/proofstorm",
+    "release_id": 386731792,
+    "version": "0.1.0-alpha.3",
+    "tag": "v0.1.0-alpha.3",
+    "channel": "alpha",
+    "published_at": "2026-09-11T02:12:05Z",
+    "release_url": "https://github.com/orangeshyguy21/proofstorm/releases/tag/v0.1.0-alpha.3",
+    "metadata_source": "github-release-assets",
+    "installer": {
+      "name": "install.sh",
+      "url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/install.sh",
+      "bytes": 5055,
+      "sha256": "caf7fa45398e11398ba1cfa1fea98b6ccb88e5bc0c956b8f09804b00c0a33f8b"
+    },
+    "platforms": [
+      {
+        "id": "linux-amd64",
+        "label": "Linux",
+        "architecture": "x86-64 / AMD64",
+        "archive": {
+          "name": "proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz",
+          "url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz",
+          "bytes": 26353611,
+          "sha256": "eda002986ef3b906acd658232f818e2bd045984b09816d8c4f185c58fc1467ee"
+        },
+        "checksum": {
+          "name": "proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz.sha256",
+          "url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz.sha256",
+          "bytes": 123,
+          "sha256": "2cab37e36e1bd817cd06c6bdc01dc8e080382fb59f24002cb4c5727d424d19b9"
+        }
+      },
+      {
+        "id": "macos-arm64",
+        "label": "macOS",
+        "architecture": "Apple Silicon / ARM64",
+        "archive": {
+          "name": "proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz",
+          "url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz",
+          "bytes": 24360814,
+          "sha256": "571a711b2b69ea7001c3bded684f3aeb81148343c44a0ab2b702afc208a51abc"
+        },
+        "checksum": {
+          "name": "proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz.sha256",
+          "url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz.sha256",
+          "bytes": 119,
+          "sha256": "db93c17cf1f6e78fe17a9a353af5e31d722350715e13e982e2c678a19e01ada2"
+        }
+      }
+    ]
+  },
+  "github_release": {
+    "id": 386731792,
+    "tag_name": "v0.1.0-alpha.3",
+    "draft": false,
+    "prerelease": true,
+    "published_at": "2026-09-11T02:12:05Z",
+    "html_url": "https://github.com/orangeshyguy21/proofstorm/releases/tag/v0.1.0-alpha.3",
+    "assets": [
+      {
+        "name": "build-report-linux-amd64.json",
+        "state": "uploaded",
+        "size": 462,
+        "digest": "sha256:71139cd33d161318e47e31d3964ba8f9767a2c9caca4684898c836b048266efe",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/build-report-linux-amd64.json"
+      },
+      {
+        "name": "build-report-macos-arm64.json",
+        "state": "uploaded",
+        "size": 517,
+        "digest": "sha256:85358b28b052ba640b2a13d29a538d2c2b0ea15cb75f7700346df259ea76362d",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/build-report-macos-arm64.json"
+      },
+      {
+        "name": "install-smoke-report-linux-amd64.json",
+        "state": "uploaded",
+        "size": 452,
+        "digest": "sha256:e709aad8b8ab0eca0938515740423ce2ed21cf051181ef2d011c27dd8120500a",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/install-smoke-report-linux-amd64.json"
+      },
+      {
+        "name": "install-smoke-report-macos-arm64.json",
+        "state": "uploaded",
+        "size": 624,
+        "digest": "sha256:fd39d31eab06a9d912e7f8254c4d932f1ca0d786e4d3fdf8a82e015d2e70ea1d",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/install-smoke-report-macos-arm64.json"
+      },
+      {
+        "name": "install.sh",
+        "state": "uploaded",
+        "size": 5055,
+        "digest": "sha256:caf7fa45398e11398ba1cfa1fea98b6ccb88e5bc0c956b8f09804b00c0a33f8b",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/install.sh"
+      },
+      {
+        "name": "proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz",
+        "state": "uploaded",
+        "size": 24360814,
+        "digest": "sha256:571a711b2b69ea7001c3bded684f3aeb81148343c44a0ab2b702afc208a51abc",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz"
+      },
+      {
+        "name": "proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz.sha256",
+        "state": "uploaded",
+        "size": 119,
+        "digest": "sha256:db93c17cf1f6e78fe17a9a353af5e31d722350715e13e982e2c678a19e01ada2",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz.sha256"
+      },
+      {
+        "name": "proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz",
+        "state": "uploaded",
+        "size": 26353611,
+        "digest": "sha256:eda002986ef3b906acd658232f818e2bd045984b09816d8c4f185c58fc1467ee",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz"
+      },
+      {
+        "name": "proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz.sha256",
+        "state": "uploaded",
+        "size": 123,
+        "digest": "sha256:2cab37e36e1bd817cd06c6bdc01dc8e080382fb59f24002cb4c5727d424d19b9",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz.sha256"
+      },
+      {
+        "name": "smoke-report-linux-amd64.json",
+        "state": "uploaded",
+        "size": 135,
+        "digest": "sha256:8270ed846f99cd78e1102bf21fb6668f581dba15a80e8efd813d30f57b85dbc8",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/smoke-report-linux-amd64.json"
+      },
+      {
+        "name": "smoke-report-macos-arm64.json",
+        "state": "uploaded",
+        "size": 134,
+        "digest": "sha256:ab1c8e32b1b2f2ca4e67a998b01b5d9bac35cb1d1c9417ee3547b65bbf83844c",
+        "browser_download_url": "https://github.com/orangeshyguy21/proofstorm/releases/download/v0.1.0-alpha.3/smoke-report-macos-arm64.json"
+      }
+    ]
+  },
+  "installer": "#!/bin/sh\n# Installs prebuilt artifacts only. No Rust, Python, Docker, or source checkout needed.\nset -eu\numask 077\n\nfail() { printf 'proofstorm install: %s\\n' \"$*\" >&2; exit 1; }\nusage() {\n  printf '%s\\n' 'Usage: sh install.sh [--prefix ABSOLUTE_PATH] [--version VERSION]' \\\n    'Local testing: --artifact-dir DIRECTORY [--archive NAME.tar.gz] --allow-development'\n}\n\ninstall_prefix=\"${HOME:?HOME is required}/.local\"\ninstall_version=\"0.1.0-alpha.3\"\nartifact_dir=\"\"\narchive_name=\"\"\nallow_development=false\nwhile [ \"$#\" -gt 0 ]; do\n  case \"$1\" in\n    --prefix|--version|--artifact-dir|--archive)\n      [ \"$#\" -ge 2 ] || fail \"$1 needs a value\"\n      case \"$1\" in\n        --prefix) install_prefix=$2 ;;\n        --version) install_version=$2 ;;\n        --artifact-dir) artifact_dir=$2 ;;\n        --archive) archive_name=$2 ;;\n      esac\n      shift 2 ;;\n    --allow-development) allow_development=true; shift ;;\n    --help|-h) usage; exit 0 ;;\n    *) fail \"unknown option: $1\" ;;\n  esac\ndone\ncase \"$install_prefix\" in /*) ;; *) fail '--prefix must be an absolute path' ;; esac\ncase \"$install_version\" in ''|*[!A-Za-z0-9.+-]*) fail 'invalid version' ;; esac\ncase \"$(uname -s)-$(uname -m)\" in\n  Darwin-arm64) install_target=aarch64-apple-darwin ;;\n  Linux-x86_64|Linux-amd64) install_target=x86_64-unknown-linux-gnu ;;\n  *) fail 'this alpha supports macOS Apple Silicon and Linux x86-64' ;;\nesac\nif [ -z \"$archive_name\" ]; then archive_name=\"proofstorm-$install_version-$install_target.tar.gz\"; fi\ncase \"$archive_name\" in *[!A-Za-z0-9._+-]*|'') fail 'invalid archive name' ;; esac\ncase \"$archive_name\" in proofstorm-*.tar.gz) ;; *) fail 'expected a Proofstorm .tar.gz archive' ;; esac\nif [ \"$allow_development\" = true ]; then\n  [ -n \"$artifact_dir\" ] || fail '--allow-development is restricted to --artifact-dir local tests'\nfi\n\n# Only this freshly created directory is cleaned up; installed versions are retained.\ninstall_scratch=$(mktemp -d \"${TMPDIR:-/tmp}/proofstorm-install.XXXXXXXX\")\ntrap 'rm -rf -- \"$install_scratch\"' EXIT\ntrap 'exit 130' INT\ntrap 'exit 143' TERM HUP\nif [ -n \"$artifact_dir\" ]; then\n  [ -f \"$artifact_dir/$archive_name\" ] || fail 'local archive is missing'\n  cp \"$artifact_dir/$archive_name\" \"$install_scratch/archive.tar.gz\"\n  cp \"$artifact_dir/$archive_name.sha256\" \"$install_scratch/checksum\"\nelse\n  release_url=\"https://github.com/orangeshyguy21/proofstorm/releases/download/v$install_version\"\n  printf 'Downloading Proofstorm %s…\\n' \"$install_version\"\n  for suffix in '' .sha256; do\n    if [ -z \"$suffix\" ]; then output_name=archive.tar.gz; else output_name=checksum; fi\n    curl --fail --location --retry 3 --silent --show-error --proto '=https' --proto-redir '=https' \\\n      \"$release_url/$archive_name$suffix\" --output \"$install_scratch/$output_name\" || fail 'release download failed; nothing was installed'\n  done\nfi\nexpected=$(awk -v name=\"$archive_name\" 'NF == 2 && $2 == name { if (++count == 1) digest=$1 } END { if (NR == 1 && count == 1) print digest; else exit 1 }' \"$install_scratch/checksum\") || fail 'invalid checksum receipt'\n[ \"${#expected}\" = 64 ] || fail 'invalid checksum length'\ncase \"$expected\" in *[!0-9a-f]*) fail 'invalid checksum' ;; esac\nif command -v sha256sum >/dev/null 2>&1; then\n  actual=$(sha256sum \"$install_scratch/archive.tar.gz\" | awk '{print $1}')\nelif command -v shasum >/dev/null 2>&1; then\n  actual=$(shasum -a 256 \"$install_scratch/archive.tar.gz\" | awk '{print $1}')\nelse\n  fail 'install sha256sum or shasum to verify the download'\nfi\n[ \"$actual\" = \"$expected\" ] || fail 'archive checksum mismatch; nothing was installed'\n\n# Published archives contain regular files only. Refuse links, traversal, and duplicates.\ntar -tzf \"$install_scratch/archive.tar.gz\" > \"$install_scratch/names\" || fail 'invalid archive'\nawk '\n  !/^proofstorm\\/[A-Za-z0-9_.\\/-]+$/ { exit 1 }\n  /(^|\\/)\\.\\.?($|\\/)/ || /\\/\\// { exit 1 }\n  seen[$0]++ { exit 1 }\n  END { if (NR == 0) exit 1 }\n' \"$install_scratch/names\" || fail 'unsafe archive paths'\nLC_ALL=C tar -tvzf \"$install_scratch/archive.tar.gz\" > \"$install_scratch/types\" || fail 'invalid archive metadata'\nawk 'substr($0,1,1) != \"-\" { exit 1 }' \"$install_scratch/types\" || fail 'archive links and special files are refused'\nmkdir \"$install_scratch/unpacked\"\n# Preserve the verified payload modes despite our private scratch-directory umask.\ntar -xpzf \"$install_scratch/archive.tar.gz\" -C \"$install_scratch/unpacked\"\nbundle=\"$install_scratch/unpacked/proofstorm\"\n[ -x \"$bundle/bin/proofstorm\" ] || fail 'bundle executable missing'\nset -- \"$bundle/bin/proofstorm\" install-bundle --bundle \"$bundle\" --prefix \"$install_prefix\"\nif [ \"$allow_development\" = true ]; then set -- \"$@\" --allow-development; fi\n\"$@\" > \"$install_scratch/install-result.json\"\nprintf '\\nInstalled. Check it with: \"%s/bin/proofstorm\" --version\\n' \"$install_prefix\"\ncase \":${PATH:-}:\" in *\":$install_prefix/bin:\"*) ;; *) printf 'PATH was not changed. Add %s/bin to PATH when ready.\\n' \"$install_prefix\" ;; esac\nprintf '%s\\n' 'No cluster, shell profile, or agent configuration was changed.'\n",
+  "checksums": {
+    "linux-amd64": "eda002986ef3b906acd658232f818e2bd045984b09816d8c4f185c58fc1467ee  proofstorm-0.1.0-alpha.3-x86_64-unknown-linux-gnu.tar.gz\n",
+    "macos-arm64": "571a711b2b69ea7001c3bded684f3aeb81148343c44a0ab2b702afc208a51abc  proofstorm-0.1.0-alpha.3-aarch64-apple-darwin.tar.gz\n"
+  }
+}

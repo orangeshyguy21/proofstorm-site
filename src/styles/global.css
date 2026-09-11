@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: Inter;
+  src: url('/fonts/inter-variable.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --color-ink: #0a0e13;
+  --color-surface: #161a22;
+  --color-paper: #e5e7eb;
+  --color-muted: #9ca3af;
+  --color-line: #2a2f3a;
+  --color-storm: #ff3b3b;
+  --color-deep-red: #b91c1c;
+}
+
+:root { color-scheme: dark; }
+body { margin: 0; background: var(--color-ink); color: var(--color-paper); font-size: 1rem; line-height: 1.6; }
+::selection { background: #ff3b3b50; color: #fff; }
+:focus-visible { outline: 2px solid var(--color-storm); outline-offset: 5px; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+code, pre { font-family: var(--font-mono); }
+.page-shell { width: min(100% - 3rem, 82rem); margin-inline: auto; }
+.brand { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; gap: .85rem; }
+.brand-mark { display: block; flex-shrink: 0; width: 2.5rem; height: 2.9rem; }
+.brand-wordmark { display: block; min-width: 0; width: 13.5rem; color: var(--color-paper); }
+.brand svg { display: block; width: 100%; height: 100%; }
+
+.launch-page { position: relative; isolation: isolate; min-height: 100svh; overflow: clip; background: #080b10; }
+.atmosphere { position: fixed; z-index: -1; inset: 0; overflow: hidden; pointer-events: none; }
+.atmosphere-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 78% 65%, #7c171d20, transparent 55%), radial-gradient(ellipse at 20% 90%, #ae18271a, transparent 50%); }
+.atmosphere-landscape { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 58% 55%; opacity: .72; mix-blend-mode: screen; mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 80%, transparent); }
+.signal-field { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .55; }
+.atmosphere-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 44%, transparent 28%, #080b1040 72%, #080b10bf 100%), linear-gradient(180deg, #080b1080, transparent 22%, transparent 77%, #080b108c); }
+.atmosphere-scan { position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent 5%, #ff3b3b15 30%, #ff3b3b2c 70%, transparent 95%); box-shadow: 0 0 18px #ff3b3b12; animation: atmosphere-scan 18s linear infinite; }
+@keyframes atmosphere-scan { 0% { transform: translateY(6vh); opacity: 0; } 12%, 72% { opacity: .6; } 90%, 100% { transform: translateY(94vh); opacity: 0; } }
+
+.source-link { position: absolute; z-index: 3; top: 1.5rem; right: 1.75rem; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; color: #a8aeb9; border: 1px solid transparent; transition: color 180ms, border-color 180ms, background 180ms; }
+.source-link span, .source-link svg { display: block; width: 1.5rem; height: 1.5rem; fill: currentColor; }
+.source-link:hover { color: #fff; background: #0a0e1380; border-color: #ff3b3b70; }
+.install-shell { display: grid; place-items: center; min-height: 100svh; padding: 5.5rem 1.5rem 4rem; }
+.install-panel { position: relative; width: min(100%, 42rem); padding: 2.75rem 2.6rem 1.9rem; border: 1px solid #59606d5c; background: linear-gradient(145deg, #11161eea 0%, #0b1017ee 55%, #0b1016ed 100%); box-shadow: 0 24px 100px #0009, 0 0 90px #080b1099, inset 0 1px 0 #ffffff06; backdrop-filter: blur(14px); }
+.install-panel::before { position: absolute; content: ''; top: -1px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent 8%, #ff3b3b55 30%, #ff6b6bb3 50%, #ff3b3b55 70%, transparent 92%); }
+.panel-corners { position: absolute; inset: -1px; pointer-events: none; }
+.panel-corners i { position: absolute; width: 12px; height: 12px; border-color: #ff3b3b80; border-style: solid; border-width: 0; }
+.panel-corners i:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.panel-corners i:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.panel-corners i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.panel-corners i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.panel-intro { text-align: center; }
+.panel-intro h1 { margin: 1.35rem auto 0; max-width: 28rem; font-size: 1.375rem; font-weight: 450; line-height: 1.5; letter-spacing: -.025em; color: #bbc0cb; }
+.install-steps { display: grid; gap: 1.65rem; margin-top: 2.25rem; scroll-margin-top: 4rem; }
+.command-heading { display: flex; align-items: center; gap: .75rem; margin-bottom: .65rem; font-family: var(--font-mono); font-size: .875rem; }
+.command-number { color: var(--color-storm); font-size: .8125rem; }
+.command-heading h2 { color: #c5c9d2; font-size: .875rem; font-weight: 400; }
+.command-rule { flex: 1; height: 1px; background: linear-gradient(90deg, #40465275, transparent); margin-left: .15rem; }
+.command-surface { position: relative; border: 1px solid #323946b0; background: #080c12ad; transition: border-color 160ms, background 160ms; }
+.command-section-primary .command-surface { border-color: #6e343fa6; background: linear-gradient(110deg, #18101560, #090d139c); }
+.command-surface:focus-within, .command-surface:hover { border-color: #8c4c57; background-color: #0a0d13; }
+.command-code { margin: 0; padding: 1.05rem 3.3rem 1.05rem 1.1rem; font-size: .875rem; line-height: 1.95; color: #e0e4ed; white-space: pre-wrap; overflow-wrap: anywhere; tab-size: 2; }
+.command-row { display: grid; grid-template-columns: .75rem minmax(0, 1fr); gap: .65rem; }
+.command-prompt { color: #616c7c; user-select: none; }
+.command-section-primary .command-prompt { color: var(--color-storm); }
+.copy-button { position: absolute; top: .7rem; right: .4rem; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; color: #929daa; transition: color 150ms, background 150ms; }
+.copy-button:hover, .copy-button[data-copied] { color: #ff6b6b; background: #ff3b3b0a; }
+.copy-success { display: none; width: 1.2rem; height: 1.2rem; }
+.copy-button[data-copied] .copy-idle { display: none; }
+.copy-button[data-copied] .copy-success { display: block; }
+.copy-error { padding: 0 1.1rem 1rem; font-size: .875rem; color: #c2a6a9; }
+.panel-notes { margin-top: 1.65rem; text-align: center; font-size: .875rem; line-height: 1.8; color: #9ba4b1; }
+.platforms { display: flex; justify-content: center; flex-wrap: wrap; gap: .35rem .7rem; color: #7e899a; }
+.platform-separator { color: #505c6c; }
+
+@media (min-width: 1700px) {
+  .install-panel { padding: 3rem 2.8rem 2.1rem; }
+  .atmosphere-landscape { object-position: 50% 62%; }
+}
+@media (max-width: 640px) {
+  .source-link { top: .85rem; right: .85rem; }
+  .install-shell { padding: 4.75rem 1rem 2rem; }
+  .install-panel { padding: 2rem 1.2rem 1.5rem; backdrop-filter: blur(8px); }
+  .brand { gap: .7rem; }
+  .brand-mark { width: 2rem; height: 2.35rem; }
+  .brand-wordmark { width: 11rem; }
+  .panel-intro h1 { font-size: 1.2rem; line-height: 1.5; margin-top: 1.25rem; }
+  .install-steps { margin-top: 1.75rem; gap: 1.4rem; }
+  .command-code { padding: .9rem 3rem .9rem .8rem; }
+  .command-row { gap: .4rem; }
+  .copy-button { top: .55rem; right: .15rem; }
+  .atmosphere-landscape { width: 175%; max-width: none; left: -40%; opacity: .58; object-position: 57% 45%; }
+  .signal-field { opacity: .3; }
+  .panel-notes { margin-top: 1.4rem; }
+}
+@media (max-width: 360px) {
+  .install-panel { padding-inline: .85rem; }
+  .desktop-break { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  .atmosphere-scan { display: none; }
+}
