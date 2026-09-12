@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Atmosphere from '../components/Atmosphere.astro';
 import Brand from '../components/Brand.astro';
 import CopyCommand from '../components/CopyCommand.astro';
+import NetworkDemo from '../components/NetworkDemo.astro';
 import githubMark from '../assets/brand/github-mark.svg?raw';
 import snapshot from '../data/release-snapshot.json';
 
@@ -16,7 +17,8 @@ const platforms = snapshot.release.platforms.map((platform) => platform.id === '
     <a class="source-link" href="https://github.com/orangeshyguy21/proofstorm" aria-label="View Proofstorm source on GitHub" title="View source on GitHub">
       <span aria-hidden="true" set:html={githubMark} />
     </a>
-    <main id="main" class="install-shell">
+    <main id="main">
+    <div class="install-shell">
       <section class="install-panel" aria-labelledby="intro-title">
         <div class="panel-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <header class="panel-intro">
@@ -32,6 +34,8 @@ const platforms = snapshot.release.platforms.map((platform) => platform.id === '
           <p class="platforms">{platforms.map((platform, index) => <><span>{platform}</span>{index < platforms.length - 1 && <span class="platform-separator" aria-hidden="true">/</span>}</>)}</p>
         </footer>
       </section>
+    </div>
+    <NetworkDemo />
     </main>
   </div>
 </Layout>

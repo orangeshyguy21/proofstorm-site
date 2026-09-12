@@ -1,0 +1,117 @@
+---
+import { DURATION, PROMPT, NODES, LINKS, STEPS, FLOWS, metricAt } from '../lib/network-demo.mjs';
+import '../styles/network-demo.css';
+import logo from '../assets/brand/proofstorm-logo.svg?raw';
+import wordmark from '../assets/brand/proofstorm-word-mark.svg?raw';
+
+const glyphs: Record<string, string> = {
+  bitcoin: 'M12 2 21 7v10l-9 5-9-5V7l9-5Zm0 0v20M3 7l9 5 9-5',
+  lightning: 'm13 2-9 12h7l-1 8 10-12h-7l1-8Z',
+  mint: 'M20 6c0 2.2-16 2.2-16 0s16-2.2 16 0ZM4 6v12c0 2.2 16 2.2 16 0V6M4 12c0 2.2 16 2.2 16 0',
+  wallet: 'M3 6h16v14H3V6Zm0 0V3h13v3M15 11h6v5h-6v-5Z',
+};
+---
+<section id="mcp" class="network-section" aria-labelledby="network-title" data-network-demo>
+  <div class="network-inner">
+    <header class="network-intro">
+      <div>
+        <h2 id="network-title">One prompt.<br /><span>A living network.</span></h2>
+      </div>
+      <p class="network-description">Your coding agent builds Bitcoin, Lightning, and Cashu cells through Proofstorm’s MCP server. Then it sends payments through the network.</p>
+    </header>
+
+    <p id="demo-description" class="sr-only">An illustrated coding-agent workflow. Eight services form a cell: two Bitcoin nodes, two Lightning nodes, two mints, and two wallets. The agent funds Lightning channels, pays an invoice, mints ecash, and transfers 250 sat from Alice to Bob. Use the playback controls to pause, replay, or explore the sequence.</p>
+
+    <div class="network-demo-frame">
+      <div class="network-demo-stage" aria-hidden="true">
+        <div class="screen-connection"><span>MCP</span><i data-mcp-packet></i></div>
+        <div class="agent-pane">
+          <div class="demo-pane-heading">
+            <span class="pane-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 6 6 6-6 6M13 18h6" /></svg>Coding agent</span>
+            <span class="agent-connected"><i></i>Connected</span>
+          </div>
+          <div class="agent-content">
+            <div class="agent-prompt">
+              <span class="prompt-author">YOU</span>
+              <p><span class="prompt-reserve">{PROMPT}</span><span data-prompt-text>{PROMPT}</span></p>
+            </div>
+            <div class="agent-tool-heading"><span class="agent-spark">✳</span><span data-agent-status>Done</span></div>
+            <ol class="agent-steps">
+              {STEPS.map((step, index) => (
+                <li class="agent-step" data-agent-step={index} data-state="complete">
+                  <span class="step-indicator"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 8 3 3 5-6" /></svg><i></i></span>
+                  <div class="agent-step-content">
+                    <div class="agent-step-title"><span>{step.title}</span><span class="step-tool">{step.tool}</span></div>
+                    <p data-step-detail>{step.result}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div class="agent-done" data-agent-done>
+              <span class="agent-spark">✳</span>
+              <p>The cell is running. All payments settled.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="canvas-pane">
+          <div class="demo-pane-heading canvas-heading">
+            <span class="canvas-brand"><span class="canvas-brand-mark" set:html={logo} /><span class="canvas-wordmark" set:html={wordmark} /></span>
+            <span class="cell-title">storm cell</span>
+            
+          </div>
+          <div class="network-board" data-network-board>
+            <span class="cell-status" data-cell-status data-ready="true"><i></i><span data-cell-status-text>8 / 8 ready</span></span>
+            <svg class="network-wires" data-network-wires xmlns="http://www.w3.org/2000/svg" fill="none">
+              <g class="network-links">
+                {LINKS.map((link) => <path data-link={link.id} data-kind={link.kind} pathLength="1" />)}
+              </g>
+              <g class="network-payments">
+                {FLOWS.map((flow) => (
+                  <g data-flow={flow.id} data-kind={flow.kind} opacity="0">
+                    <path class="payment-trail" />
+                    <circle class="payment-aura" r="9" />
+                    <circle class="payment-core" r="3" />
+                  </g>
+                ))}
+              </g>
+            </svg>
+            <div class="network-nodes">
+              {NODES.map((node) => (
+                <div class="network-node" data-node={node.id} data-kind={node.kind} data-node-ready="true" style={'--column:' + node.column + ';--row:' + node.row + ';--compact-column:' + node.compactColumn + ';--compact-row:' + node.compactRow}>
+                  <div class="node-kind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d={glyphs[node.kind]} /></svg>{node.kind}</div>
+                  <div class="node-name">{node.name}</div>
+                  <div class="node-implementation">{node.implementation}</div>
+                  <div class="node-footer"><span data-node-metric>{metricAt(node.id, DURATION)}</span><i class="node-status-light"></i></div>
+                  <span class="node-arrival" data-node-arrival></span>
+                </div>
+              ))}
+            </div>
+            <div class="network-empty" data-network-empty><span class="empty-cross">+</span></div>
+          </div>
+          <div class="network-receipt" data-receipt-kind="complete">
+            <span class="receipt-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 12 4 4 10-10" /></svg></span>
+            <div><p data-receipt-label>All payments settled</p><span data-receipt-detail>8 services running</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-controls" data-demo-controls hidden role="group" aria-label="Network demonstration playback" aria-describedby="demo-description">
+        <div class="demo-play-buttons">
+          <button type="button" class="demo-control-button" data-demo-play aria-label="Pause animation" title="Pause animation">
+            <svg data-icon-pause viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z" /></svg>
+            <svg data-icon-play viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-hidden="true"><path d="m6 3 11 7-11 7V3Z" /></svg>
+          </button>
+          <button type="button" class="demo-control-button" data-demo-replay aria-label="Replay animation" title="Replay animation"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7a6 6 0 1 1-.2 5M4 3v4h4" /></svg></button>
+        </div>
+        <div class="demo-progress-group">
+          <div class="demo-progress-label"><span data-demo-phase>Complete</span><span data-demo-time>0:32 / 0:32</span></div>
+          <input type="range" min="0" max={DURATION} step="100" value={DURATION} data-demo-progress aria-label="Animation progress" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  import '../scripts/network-demo';
+</script>
