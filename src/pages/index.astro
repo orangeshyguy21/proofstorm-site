@@ -4,6 +4,7 @@ import Atmosphere from '../components/Atmosphere.astro';
 import Brand from '../components/Brand.astro';
 import CopyCommand from '../components/CopyCommand.astro';
 import NetworkDemo from '../components/NetworkDemo.astro';
+import Footer from '../components/Footer.astro';
 import githubMark from '../assets/brand/github-mark.svg?raw';
 import snapshot from '../data/release-snapshot.json';
 
@@ -14,16 +15,20 @@ const platforms = snapshot.release.platforms.map((platform) => platform.id === '
 <Layout>
   <div class="launch-page">
     <Atmosphere />
-    <a class="source-link" href="https://github.com/orangeshyguy21/proofstorm" aria-label="View Proofstorm source on GitHub" title="View source on GitHub">
-      <span aria-hidden="true" set:html={githubMark} />
-    </a>
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Main navigation">
+        <Brand />
+        <a class="source-link" href="https://github.com/orangeshyguy21/proofstorm" target="_blank" rel="noopener noreferrer" aria-label="View Proofstorm source on GitHub" title="View source on GitHub">
+          <span aria-hidden="true" set:html={githubMark} />
+        </a>
+      </nav>
+    </header>
     <main id="main">
     <div class="install-shell">
       <section class="install-panel" aria-labelledby="intro-title">
         <div class="panel-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <header class="panel-intro">
-          <Brand />
-          <h1 id="intro-title">Local test cells for Bitcoin,<br class="desktop-break" /> Lightning &amp; Cashu.</h1>
+          <h1 id="intro-title">Dynamic test environments for Bitcoin, Lightning, and Cashu</h1>
         </header>
         <div id="install" class="install-steps">
           <CopyCommand command={installCommand} number="01" label="Install" primary />
@@ -37,5 +42,6 @@ const platforms = snapshot.release.platforms.map((platform) => platform.id === '
     </div>
     <NetworkDemo />
     </main>
+    <Footer />
   </div>
 </Layout>

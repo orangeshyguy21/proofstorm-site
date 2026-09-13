@@ -42,10 +42,13 @@ code, pre { font-family: var(--font-mono); }
 .atmosphere-scan { position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent 5%, #ff3b3b15 30%, #ff3b3b2c 70%, transparent 95%); box-shadow: 0 0 18px #ff3b3b12; animation: atmosphere-scan 18s linear infinite; }
 @keyframes atmosphere-scan { 0% { transform: translateY(6vh); opacity: 0; } 12%, 72% { opacity: .6; } 90%, 100% { transform: translateY(94vh); opacity: 0; } }
 
-.source-link { position: absolute; z-index: 3; top: 1.5rem; right: 1.75rem; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; color: #a8aeb9; border: 1px solid transparent; transition: color 180ms, border-color 180ms, background 180ms; }
+.site-header { position: absolute; z-index: 3; inset: 0 0 auto; }
+.site-nav { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1rem 1.75rem; background: #080c12b3; }
+.site-nav .brand { min-width: 0; min-height: 2.75rem; }
+.source-link { flex-shrink: 0; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; color: #a8aeb9; border: 1px solid transparent; transition: color 180ms, border-color 180ms, background 180ms; }
 .source-link span, .source-link svg { display: block; width: 1.5rem; height: 1.5rem; fill: currentColor; }
 .source-link:hover { color: #fff; background: #0a0e1380; border-color: #ff3b3b70; }
-.install-shell { display: grid; place-items: center; min-height: 100svh; padding: 5.5rem 1.5rem 4rem; }
+.install-shell { display: grid; place-items: center; min-height: 100svh; padding: 6.75rem 1.5rem 4rem; }
 .install-panel { position: relative; width: min(100%, 42rem); padding: 2.75rem 2.6rem 1.9rem; border: 1px solid #59606d5c; background: linear-gradient(145deg, #11161eea 0%, #0b1017ee 55%, #0b1016ed 100%); box-shadow: 0 24px 100px #0009, 0 0 90px #080b1099, inset 0 1px 0 #ffffff06; backdrop-filter: blur(14px); }
 .install-panel::before { position: absolute; content: ''; top: -1px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent 8%, #ff3b3b55 30%, #ff6b6bb3 50%, #ff3b3b55 70%, transparent 92%); }
 .panel-corners { position: absolute; inset: -1px; pointer-events: none; }
@@ -55,7 +58,7 @@ code, pre { font-family: var(--font-mono); }
 .panel-corners i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
 .panel-corners i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
 .panel-intro { text-align: center; }
-.panel-intro h1 { margin: 1.35rem auto 0; max-width: 28rem; font-size: 1.375rem; font-weight: 450; line-height: 1.5; letter-spacing: -.025em; color: #bbc0cb; }
+.panel-intro h1 { margin: 0 auto; max-width: 28rem; font-size: 1.375rem; font-weight: 450; line-height: 1.5; letter-spacing: -.025em; color: #bbc0cb; }
 .install-steps { display: grid; gap: 1.65rem; margin-top: 2.25rem; scroll-margin-top: 4rem; }
 .command-heading { display: flex; align-items: center; gap: .75rem; margin-bottom: .65rem; font-family: var(--font-mono); font-size: .875rem; }
 .command-number { color: var(--color-storm); font-size: .8125rem; }
@@ -83,13 +86,13 @@ code, pre { font-family: var(--font-mono); }
   .atmosphere-landscape { object-position: 50% 62%; }
 }
 @media (max-width: 640px) {
-  .source-link { top: .85rem; right: .85rem; }
+  .site-nav { gap: 1rem; padding: .75rem 1rem; }
   .install-shell { padding: 4.75rem 1rem 2rem; }
   .install-panel { padding: 2rem 1.2rem 1.5rem; backdrop-filter: blur(8px); }
   .brand { gap: .7rem; }
   .brand-mark { width: 2rem; height: 2.35rem; }
   .brand-wordmark { width: 11rem; }
-  .panel-intro h1 { font-size: 1.2rem; line-height: 1.5; margin-top: 1.25rem; }
+  .panel-intro h1 { font-size: 1.2rem; line-height: 1.5; }
   .install-steps { margin-top: 1.75rem; gap: 1.4rem; }
   .command-code { padding: .9rem 3rem .9rem .8rem; }
   .command-row { gap: .4rem; }
