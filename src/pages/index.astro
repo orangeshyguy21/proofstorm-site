@@ -9,7 +9,7 @@ import githubMark from '../assets/brand/github-mark.svg?raw';
 import snapshot from '../data/release-snapshot.json';
 
 const installCommand = `curl -fsSL ${new URL('/install', Astro.site).href} | sh`;
-const startCommand = 'export PATH="$HOME/.local/bin:$PATH"\nproofstorm setup\nproofstorm doctor\nproofstorm gui';
+const startCommand = 'export PATH="$HOME/.local/bin:$PATH"\nstorm setup\nstorm doctor\nstorm gui';
 const platforms = snapshot.release.platforms.map((platform) => platform.id === 'macos-arm64' ? 'macOS Apple Silicon' : 'Linux x86-64');
 ---
 <Layout>
