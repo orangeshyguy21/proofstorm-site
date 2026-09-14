@@ -12,6 +12,30 @@
   Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=0, must-revalidate
 
+/favicon.ico
+  Content-Type: image/vnd.microsoft.icon
+  Cache-Control: public, max-age=0, must-revalidate
+
+/favicon-96x96.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=0, must-revalidate
+
+/favicon.svg
+  Content-Type: image/svg+xml
+  Cache-Control: public, max-age=0, must-revalidate
+
+/apple-touch-icon.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=0, must-revalidate
+
+/proofstorm-avatar-512.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=0, must-revalidate
+
+/og/proofstorm-og-v3.jpg
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 

@@ -3,29 +3,50 @@ import '@fontsource/ibm-plex-mono/latin-400.css';
 import '../styles/global.css';
 interface Props { title?: string; description?: string; }
 const {
-  title = 'Proofstorm — Local test cells for Bitcoin, Lightning & Cashu',
-  description = 'Bring up local test cells with real Bitcoin, Lightning, and Cashu services. Build and test through a CLI, a browser, or your coding agent.',
+  title = 'Proofstorm — Bitcoin, Lightning, and Cashu test environments',
+  description = 'Dynamic test environments for Bitcoin, Lightning, and Cashu. Connect your coding agent through MCP for control over environment creation and operation.',
 } = Astro.props;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const websiteSchema = Astro.url.pathname === '/' ? {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Proofstorm',
+  url: canonical.href,
+  description,
+  inLanguage: 'en',
+} : undefined;
+const socialImage = new URL('/og/proofstorm-og-v3.jpg', Astro.site);
+const socialImageAlt = 'Proofstorm: Dynamic test environments for Bitcoin, Lightning, and Cashu. A coding agent connects through MCP to a test cell, beside a red storm over mountains.';
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0e13" />
-    <link rel="icon" type="image/svg+xml" href="/proofstorm-logo.svg" />
-    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Proofstorm" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {canonical && <meta property="og:url" content={canonical} />}
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
     <title>{title}</title>
+    {websiteSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema).replace(/</g, '\u003c')} />}
   </head>
   <body class="font-sans antialiased">
     <a href="#main" class="sr-only fixed top-4 left-4 z-50 rounded-sm bg-storm px-5 py-3 text-ink focus:not-sr-only">Skip to content</a>

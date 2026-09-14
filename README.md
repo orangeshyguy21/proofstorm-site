@@ -85,6 +85,10 @@ The current published releases do not yet include the proposed `release.json` ma
 
 A future upstream manifest can add the source commit and explicit required-platform/acceptance declarations. Its generation belongs in Proofstorm's existing verified release preparation flow. Until that exists, archive availability is not represented as clean-machine acceptance, and this site does not invent a source commit or platform certification.
 
+## Social previews
+
+The approved v3 image is served at `/og/proofstorm-og-v3.jpg` and referenced by Open Graph and X/Twitter large-image card metadata. See [social sharing and search presence](docs/social-sharing.md) for image sources, the integrated favicon and Apple icon set, deployment checks, and remaining search setup.
+
 ## References
 
 - [Astro styling with Tailwind](https://docs.astro.build/en/guides/styling/#tailwind)
